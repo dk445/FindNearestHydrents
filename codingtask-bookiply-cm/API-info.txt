@@ -1,0 +1,59 @@
+API : ListNearestHydrants
+End-point : /new-york/nearestHydrants?point_x=<VALUE>&point_y=<VALUE>&truck=<VALUE>
+Description : Returns the total length of fire hoses required along with the list of nearest 
+			  Hydrants containg objectId of hydrant and its distance from fire spot.
+QueryParams : 
+		point_x :
+			Type : double
+			Required : yes
+			Description : x-ordinate of fire spot.
+		point_y :
+			Type : double
+			Required : yes
+			Description : y-ordinate of fire spot.
+		truck :
+			Type : positive integer
+			Required : yes
+			Description : number of trucks.
+Response : 
+		type : JSON object
+		error : InvalidInput or ExternalDataError
+		prototype :
+				{
+					"totalFirehosesLength": double,
+					"hydrants": [
+						{
+							"unitid": String,
+							"distanceToFire": double
+						},
+						{
+							"unitid": String,
+							"distanceToFire": double
+						},
+						.
+						.
+						.
+					]
+				}		
+		
+Sample :
+		request : /new-york/nearestHydrants?point_x=1008424.396&point_y=174042.245&truck=3
+		response : 
+				{
+					"totalFirehosesLength": 3812.333960280213,
+					"hydrants": [
+						{
+							"unitid": "H325449",
+							"distanceToFire": 1.4142135623730951
+						},
+						{
+							"unitid": "H325543",
+							"distanceToFire": 1429.208406135789
+						},
+						{
+							"unitid": "H325222",
+							"distanceToFire": 2381.7113405820514
+						}
+					]
+				}
+		
